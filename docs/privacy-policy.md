@@ -56,9 +56,9 @@ Data may be shared with Google and its partners for ad delivery. See Google’s 
 ---
 
 ## 5. 子どものプライバシー（Children’s Privacy）
-本アプリは4歳未満の児童を対象としていません。
+本アプリは15歳未満の児童を対象としていません。
 
-The App is not directed to children under the age of 4.
+The App is not directed to children under the age of 15.
 
 ---
 
