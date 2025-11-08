@@ -59,8 +59,8 @@
 <div class="footer">
   <p>
     <!-- TODO: プライバシーポリシーとサポートページのURLに置き換えてください -->
-    <a href="#">プライバシーポリシー</a> | 
-    <a href="#">サポート / お問い合わせ</a>
+    <a href="https://kentsjp.github.io/Kentslab/fukumado-privacy-policy">プライバシーポリシー</a> | 
+    <a href="https://kentsjp.github.io/Kentslab/support">サポート / お問い合わせ</a>
   </p>
-  <p>© 2024 Fukumado Multi Player Project</p>
+  <p>© 2025 Kentslab</p>
 </div>
