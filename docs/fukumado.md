@@ -1,66 +1,333 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Fukumado Multi Player</title>
+  <meta name="description" content="複数の窓で動画・Webを同時に表示できるマルチウィンドウブラウザ。" />
 
-<style>
-  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; color: #333; max-width: 800px; margin: 0 auto; padding: 20px; }
-  .header { text-align: center; margin-bottom: 40px; }
-  .app-icon { width: 120px; height: 120px; border-radius: 22%; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
-  h1 { font-size: 2.5em; margin-bottom: 0.2em; }
-  .tagline { font-size: 1.2em; color: #555; }
-  .store-buttons { display: flex; justify-content: center; gap: 20px; margin: 30px 0; }
-  .store-button img { height: 50px; }
-  .section { margin-bottom: 40px; }
-  h2 { border-bottom: 2px solid #eee; padding-bottom: 10px; }
-  .feature { display: flex; align-items: center; gap: 20px; margin-bottom: 20px; }
-  .feature-icon { font-size: 2.5em; color: #007AFF; }
-  .footer { text-align: center; margin-top: 50px; font-size: 0.9em; color: #777; }
-</style>
+  <style>
+    :root{
+      --bg: #0b1020;
+      --panel: rgba(255,255,255,.08);
+      --panel2: rgba(255,255,255,.12);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.70);
+      --line: rgba(255,255,255,.14);
+      --accent: #7c5cff;
+      --accent2:#00d4ff;
+      --shadow: 0 18px 60px rgba(0,0,0,.45);
+      --radius: 18px;
+    }
 
-<div class="header">
-  <img src="assets/images/icon.png" alt="Fukumado Multi Player App Icon" class="app-icon">
-  <h1>Fukumado Multi Player</h1>
-  <p class="tagline">究極の"ながら"視聴体験を、この手に。</p>
-</div>
+    *{ box-sizing: border-box; }
+    body{
+      margin:0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, "Hiragino Sans", "Noto Sans JP", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(900px 500px at 20% 10%, rgba(124,92,255,.25), transparent 60%),
+        radial-gradient(700px 500px at 80% 20%, rgba(0,212,255,.18), transparent 55%),
+        radial-gradient(900px 700px at 50% 110%, rgba(255,255,255,.06), transparent 60%),
+        var(--bg);
+      line-height: 1.6;
+    }
+    a{ color: inherit; text-decoration: none; }
+    a:hover{ text-decoration: underline; }
 
-<div class="store-buttons">
-  <!-- TODO: Google PlayとApp StoreのURLが確定したら、# の部分を置き換えてください -->
-  <a href="#" class="store-button"><img src="https://play.google.com/intl/en_us/badges/static/images/badges/ja_badge_web_generic.png" alt="Google Playで手に入れよう"></a>
-  <a href="https://apps.apple.com/jp/app/id6755056679" class="store-button"><img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store"></a>
-</div>
+    .container{
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 28px 20px 60px;
+    }
 
-<div class="section">
-  <h2>新しい次元のマルチタスクへ</h2>
-  <p>Fukumado Multi Playerは、Webサイトや動画を複数の窓で同時に表示・操作できる、高機能な複窓（マルチウィンドウ）ブラウザです。情報収集をしながら動画を楽しんだり、2つのライブ配信を同時に追いかけたり。あなたの「やりたい」を、もう我慢する必要はありません。</p>
-</div>
+    /* Header */
+    .topbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding: 10px 0 26px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:12px;
+      min-width: 240px;
+    }
+    .icon{
+      width:42px; height:42px; border-radius: 22%;
+      box-shadow: 0 10px 30px rgba(0,0,0,.35);
+    }
+    .brand-title{
+      font-weight: 650;
+      letter-spacing: .2px;
+    }
+    .brand-sub{
+      font-size: 12px; color: var(--muted);
+      margin-top: 2px;
+    }
+    .nav{
+      display:flex; gap:14px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .nav a{ padding:8px 10px; border-radius: 999px; }
+    .nav a:hover{ background: rgba(255,255,255,.06); text-decoration:none; }
 
-<div class="section">
-  <h2>主な機能</h2>
-  <div class="feature">
-    <span class="feature-icon">🖼️</span>
-    <div>
-      <h3>選べるウィンドウレイアウト</h3>
-      <p>用途に合わせて、2画面（上下）、3画面（大小）、4画面（田の字）のレイアウトを自由に選択できます。</p>
+    /* Hero */
+    .hero{
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.06));
+      border-radius: calc(var(--radius) + 8px);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      position: relative;
+    }
+    .hero::before{
+      content:"";
+      position:absolute; inset:-2px;
+      background:
+        radial-gradient(600px 220px at 20% 15%, rgba(124,92,255,.35), transparent 60%),
+        radial-gradient(520px 260px at 80% 25%, rgba(0,212,255,.26), transparent 55%);
+      filter: blur(18px);
+      opacity: .9;
+      pointer-events:none;
+    }
+    .hero-inner{
+      position: relative;
+      padding: 30px 26px;
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 18px;
+      align-items: center;
+    }
+    .hero h1{
+      margin: 0 0 6px;
+      font-size: clamp(28px, 3.6vw, 44px);
+      line-height: 1.15;
+      letter-spacing: .2px;
+    }
+    .tagline{
+      margin: 0 0 14px;
+      font-size: 16px;
+      color: var(--muted);
+    }
+    .pills{ display:flex; flex-wrap:wrap; gap:10px; margin: 0 0 18px; }
+    .pill{
+      font-size: 13px;
+      color: rgba(255,255,255,.82);
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.14);
+      padding: 7px 10px;
+      border-radius: 999px;
+      backdrop-filter: blur(10px);
+    }
+
+    .cta{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      flex-wrap:wrap;
+      margin-top: 8px;
+    }
+    .cta small{ color: var(--muted); }
+
+    .appstore-badge img{ height: 44px; display:block; } /* 40px以上を意識 */
+    .hero-card{
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(10,14,28,.35);
+      border-radius: var(--radius);
+      padding: 16px;
+      backdrop-filter: blur(12px);
+    }
+    .hero-card-title{ font-weight: 650; margin:0 0 6px; }
+    .hero-card-text{ margin:0; color: var(--muted); font-size: 14px; }
+
+    /* Sections */
+    .section{ margin-top: 22px; }
+    .section h2{
+      margin: 26px 0 10px;
+      font-size: 18px;
+      letter-spacing: .2px;
+    }
+    .card{
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      border-radius: var(--radius);
+      box-shadow: 0 10px 36px rgba(0,0,0,.25);
+      padding: 16px;
+      backdrop-filter: blur(10px);
+    }
+    .media{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap: 10px;
+    }
+    .media a{
+      color: rgba(255,255,255,.92);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .media .note{ color: var(--muted); font-size: 13px; margin-top: 6px; }
+
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    .feat-title{ font-weight: 650; margin: 0 0 6px; }
+    .feat-text{ margin:0; color: var(--muted); font-size: 14px; }
+    .feat-icon{
+      width: 40px; height: 40px;
+      border-radius: 12px;
+      display:grid; place-items:center;
+      background: linear-gradient(135deg, rgba(124,92,255,.35), rgba(0,212,255,.22));
+      border: 1px solid rgba(255,255,255,.14);
+      margin-bottom: 10px;
+      font-size: 18px;
+    }
+
+    .shots{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .shot{
+      border-radius: var(--radius);
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.05);
+      height: 240px;
+      overflow:hidden;
+      position:relative;
+    }
+    .shot span{
+      position:absolute; inset:0;
+      display:grid; place-items:center;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    footer{
+      margin-top: 34px;
+      color: var(--muted);
+      font-size: 13px;
+      display:flex;
+      justify-content:space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    footer a{ color: var(--muted); }
+
+    /* Responsive */
+    @media (max-width: 860px){
+      .hero-inner{ grid-template-columns: 1fr; }
+      .grid{ grid-template-columns: 1fr; }
+      .shots{ grid-template-columns: 1fr; }
+      .nav{ display:none; }
+    }
+
+    /* Motion preference */
+    @media (prefers-reduced-motion: reduce){
+      *{ scroll-behavior: auto !important; transition: none !important; animation: none !important; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="topbar">
+      <div class="brand">
+        <img src="assets/images/icon.png" alt="Fukumado Multi Player App Icon" class="icon" />
+        <div>
+          <div class="brand-title">Fukumado Multi Player</div>
+          <div class="brand-sub">複窓（マルチウィンドウ）動画ブラウザ</div>
+        </div>
+      </div>
+
+      <nav class="nav" aria-label="Site navigation">
+        <a href="#features">機能</a>
+        <a href="#media">メディア掲載</a>
+        <a href="#support">サポート</a>
+      </nav>
     </div>
-  </div>
-  <div class="feature">
-    <span class="feature-icon">▶️</span>
-    <div>
-      <h3>快適なYouTube再生</h3>
-      <p>YouTubeのページを開くと、対応動画は自動で最適化された専用プレイヤーに。ストレスなくスムーズな操作が可能です。</p>
-    </div>
-  </div>
-  <div class="feature">
-    <span class="feature-icon">🔈</span>
-    <div>
-      <h3>スマートな音声制御</h3>
-      <p>複数の動画を同時に再生しても、音声が混ざることはありません。一番最初の窓の音声だけが再生されるので、快適な"ながら"視聴が可能です。</p>
-    </div>
-  </div>
-</div>
 
-<div class="footer">
-  <p>
-    <!-- TODO: プライバシーポリシーとサポートページのURLに置き換えてください -->
-    <a href="https://kentsjp.github.io/Kentslab/fukumado-privacy-policy">プライバシーポリシー</a> | 
-    <a href="https://kentsjp.github.io/Kentslab/support">サポート / お問い合わせ</a>
-  </p>
-  <p>© 2025 Kentslab</p>
-</div>
+    <section class="hero">
+      <div class="hero-inner">
+        <div>
+          <h1>“ながら”視聴を、次の体験へ。</h1>
+          <p class="tagline">最大4つの配信・動画・Webを、1画面で同時に。切り替えに時間を使わない。</p>
+
+          <div class="pills">
+            <div class="pill">2 / 3 / 4 分割レイアウト</div>
+            <div class="pill">ライブ視聴に最適</div>
+            <div class="pill">iPhone / iPad</div>
+          </div>
+
+          <div class="cta">
+            <a class="appstore-badge" href="https://apps.apple.com/jp/app/id6755056679" target="_blank" rel="noopener noreferrer">
+              <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store" />
+            </a>
+            <small>無料でダウンロード</small>
+          </div>
+        </div>
+
+        <aside class="hero-card">
+          <p class="hero-card-title">使いどころ</p>
+          <p class="hero-card-text">
+            推しの同時配信、スポーツ中継の複数視点、作業しながらの情報収集などに。
+          </p>
+        </aside>
+      </div>
+    </section>
+
+    <section id="media" class="section">
+      <h2>メディア掲載</h2>
+      <div class="card media">
+        <div>
+          <div style="font-weight:650;">アプリブで紹介されました</div>
+          <div class="note">掲載ページ：<a href="https://app-liv.jp/5354273/" target="_blank" rel="noopener noreferrer">https://app-liv.jp/5354273/</a></div>
+        </div>
+        <div style="color:rgba(255,255,255,.55);font-size:12px;white-space:nowrap;">外部サイト</div>
+      </div>
+    </section>
+
+    <section id="features" class="section">
+      <h2>主な機能</h2>
+      <div class="grid">
+        <div class="card">
+          <div class="feat-icon">▦</div>
+          <p class="feat-title">選べるレイアウト</p>
+          <p class="feat-text">2画面・3画面・4画面を用途で切り替え。視線移動が少ない配置を作れます。</p>
+        </div>
+        <div class="card">
+          <div class="feat-icon">▶</div>
+          <p class="feat-title">快適な再生体験</p>
+          <p class="feat-text">動画視聴を前提に、操作しやすい導線で迷いにくく。</p>
+        </div>
+        <div class="card">
+          <div class="feat-icon">🔊</div>
+          <p class="feat-title">音声の扱いやすさ</p>
+          <p class="feat-text">複数同時再生でも“聞きたい音”に集中できるように設計。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>スクリーンショット</h2>
+      <div class="shots">
+        <div class="shot"><span>ここにスクショ画像（例：assets/images/shot1.png）</span></div>
+        <div class="shot"><span>ここにスクショ画像（例：assets/images/shot2.png）</span></div>
+      </div>
+    </section>
+
+    <footer id="support" class="section">
+      <div>
+        <a href="https://kentsjp.github.io/Kentslab/fukumado-privacy-policy" target="_blank" rel="noopener noreferrer">プライバシーポリシー</a>
+        <span style="opacity:.45;"> / </span>
+        <a href="https://kentsjp.github.io/Kentslab/support" target="_blank" rel="noopener noreferrer">サポート / お問い合わせ</a>
+      </div>
+      <div>© 2025 Kentslab</div>
+    </footer>
+  </div>
+</body>
+</html>
