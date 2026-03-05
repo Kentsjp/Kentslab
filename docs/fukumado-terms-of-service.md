@@ -133,9 +133,9 @@ These Terms shall be governed by and construed in accordance with the laws of Ja
 ---
 
 ## 第12条 App Storeに関する特記事項（Special Provisions Regarding the App Store）
-iOS版アプリをご利用の場合、本規約に加え、Apple Inc.が定める標準使用許諾契約（Standard EULA）が適用されます。本規約とStandard EULAが矛盾する場合、本アプリの利用に関しては本規約が優先されますが、Appleのプラットフォーム利用ルールに関してはAppleの規約が優先されます。本アプリの保守およびサポートに関する義務は運営者が負い、Apple Inc.は一切の義務を負いません。
+iOS版アプリをご利用の場合、本規約に加え、Apple Inc.が定める[標準使用許諾契約（Standard EULA）](https://www.apple.com/legal/internet-services/itunes/dev/stdeula/)が適用されます。本規約とStandard EULAが矛盾する場合、本アプリの利用に関しては本規約が優先されますが、Appleのプラットフォーム利用ルールに関してはAppleの規約が優先されます。本アプリの保守およびサポートに関する義務は運営者が負い、Apple Inc.は一切の義務を負いません。
 
-If you use the iOS version of the App, the Standard End User License Agreement (Standard EULA) determined by Apple Inc. applies in addition to these Terms. If these Terms conflict with the Standard EULA, these Terms shall take precedence regarding the use of the App, but Apple’s terms shall take precedence regarding Apple’s platform usage rules. The Operator is solely responsible for any maintenance and support services for the App, and Apple Inc. has no obligation whatsoever to furnish any such services.
+If you use the iOS version of the App, the [Standard End User License Agreement (Standard EULA)](https://www.apple.com/legal/internet-services/itunes/dev/stdeula/) determined by Apple Inc. applies in addition to these Terms. If these Terms conflict with the Standard EULA, these Terms shall take precedence regarding the use of the App, but Apple’s terms shall take precedence regarding Apple’s platform usage rules. The Operator is solely responsible for any maintenance and support services for the App, and Apple Inc. has no obligation whatsoever to furnish any such services.
 
 ---
 
