@@ -1,13 +1,15 @@
 # プライバシーポリシー（Privacy Policy）
 
-最終更新日（Last Updated）: 2026-03-02
+最終更新日（Last Updated）: 2026-03-05
 
 運営者（Operator）: Kento Kishi
 連絡先（Contact）: kentslabjp@gmail.com
 
 本アプリ「Fukumado」（以下「本アプリ」）は、ユーザーのプライバシー保護を重視しています。広告配信のために第三者サービス（Google AdMob）を利用するほか、ユーザーデータの保存同期や利便性向上のために一部のデータを取得・利用する場合があります。
+なお、本ポリシーの日本語版と他言語版の間に生じる解釈の相違については、常に日本語版が優先されるものとします。
 
 This application “Fukumado” (the “App”) prioritizes the protection of your privacy. We use third-party services (Google AdMob) for advertising, and may collect and use certain data to synchronize your user data and improve convenience.
+In the event of any conflict or inconsistency between the Japanese version of this policy and any other language versions, the Japanese version shall always prevail.
 
 ---
 
@@ -36,11 +38,11 @@ The App may collect and use the following data.
 
 ## 2. 利用目的（Purposes of Use）
 - アプリ機能（お気に入り同期・プッシュ通知・プレミアム機能など）の提供および維持
-- 広告配信・パーソナライズ、頻度制御、効果測定  
+- 広告配信・パーソナライズ、頻度制御、効果測定
 - サービスの品質向上・不正防止
 
 - To provide and maintain App features (favorites synchronization, push notifications, premium features, etc.)
-- Ad delivery/personalization, frequency capping, measurement  
+- Ad delivery/personalization, frequency capping, measurement
 - Service quality improvement and fraud prevention
 
 ---
@@ -54,20 +56,20 @@ All user data (such as favorites and settings) stored in the cloud (Firebase) is
 ## 4. 第三者提供・共有（Sharing with Third Parties）
 広告配信やデータ同期、分析のため、GoogleやAppleなどのパートナーに前項のデータが共有される場合があります。詳細は各サービスのポリシーをご確認ください。
 
-Data may be shared with partners like Google and Apple for ad delivery, data synchronization, and analysis. See their policies for details:  
-- Google Privacy & Terms: https://policies.google.com/privacy  
+Data may be shared with partners like Google and Apple for ad delivery, data synchronization, and analysis. See their policies for details:
+- Google Privacy & Terms: https://policies.google.com/privacy
 - Firebase Privacy: https://firebase.google.com/support/privacy
 - Google Ads (Technologies): https://policies.google.com/technologies/ads
 
 ---
 
 ## 5. ユーザーの選択肢（Your Choices）
-- iOSの設定やアプリ内の同意画面（ATT）から、追跡の許可/不許可を選択できます。  
-- 端末の広告識別子をリセットすることができます。  
+- iOSの設定やアプリ内の同意画面（ATT）から、追跡の許可/不許可を選択できます。
+- 端末の広告識別子をリセットすることができます。
 - パーソナライズド広告の制限を有効にできます。
 
-- Manage tracking permission via iOS settings or the App’s ATT prompt.  
-- You can reset the device advertising identifier.  
+- Manage tracking permission via iOS settings or the App’s ATT prompt.
+- You can reset the device advertising identifier.
 - You can limit ad personalization.
 
 ---
@@ -87,5 +89,5 @@ This policy may be updated from time to time. Material changes will be indicated
 ---
 
 ## 8. お問い合わせ（Contact）
-本ポリシーに関するお問い合わせは、上記連絡先までご連絡ください。  
+本ポリシーに関するお問い合わせは、上記連絡先までご連絡ください。
 For inquiries regarding this policy, contact us at the email address above.
